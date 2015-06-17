@@ -1,0 +1,20 @@
+* Git Hooks
+** What are they?
+** Resources
+   Just googling for 'Commit Hooks' brings back most of the resources you could need.
+   - [[http://git-scm.com/docs/githooks][Git SCM on Git Hooks]]
+   - [[https://www.atlassian.com/git/tutorials/git-hooks/conceptual-overview][Atlassian Tutorial]]
+   - [[http://githooks.com/][Page with a full list of hooks and some info]]
+   - [[http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][Information on customising Git Hooks]]
+* [[https://marketplace.eclipse.org/content/findbugs-eclipse-plugin][Find Bugs]]
+** What is it?
+   Used to find common coding errors; to increase the general code base quality.
+   - General --> Appearance --> Label Decorations
+     [[file:decorators.png]]
+** Resources
+   - [[https://www.wikiwand.com/en/Static_program_analysis][Static Code Analysis (Wiki)]]
+*** Similar Plugins
+    - [[https://marketplace.eclipse.org/content/checkstyle-plug][Checkstyle]] - Guaranteed to generate some debate :).
+    - [[https://marketplace.eclipse.org/content/eclipse-code-recommenders][Code Recommenders]] - Not directly relevant, but incredibly awesome.
+    - [[https://marketplace.eclipse.org/content/unnecessary-code-detector][Unnecessary Code Detector]]
+    - [[https://marketplace.eclipse.org/content/bytecode-visualizer][Bytecode Visualiser]] - Cool, but arguably irrelevant

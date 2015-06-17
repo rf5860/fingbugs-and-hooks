@@ -8,7 +8,24 @@
      # commit-msg.sample      post-receive.sample  pre-applypatch.sample  pre-push.sample    prepare-commit-msg.sample
    #+END_SRC
 *** Examples
-**** pre-commit  - Spelling of Error Messages
+**** pre-commit  - Spelling of Error, Warning, and Info Messages
+     Need a command line spelling tool example - in this case, we will use [[http://aspell.net/win32/][aspell]] with the compiled English dictionary.
+     First, we need to know how to use aspell:
+     #+BEGIN_SRC sh
+       # Usage is pretty simple:
+       echo 'This is a ttest'|asell -a
+       # @(#) International Ispell Version 3.1.20 (but really Aspell 0.50.3)
+       # *
+       # *
+       # *
+       # & ttest 15 10: test, tset, testy, attest, doest, toast, retest, truest, treat, totes, teat, tests, rest, tester, yest
+     #+END_SRC
+     Second, we need some utility functions to extract the message text ellipse messages. Messages start like this:
+     #+BEGIN_SRC xml
+       <Ellipse:Error
+       <Ellipse:Warning
+       <Ellipse:Information
+     #+END_SRC
 **** pre-commit  - Ignored Tests
 **** commit-msg  - Ensuring correct message format
 **** post-commit - Emailing QA upon defect completion 

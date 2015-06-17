@@ -7,10 +7,14 @@
    - [[http://githooks.com/][Page with a full list of hooks and some info]]
    - [[http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][Information on customising Git Hooks]]
 * [[https://marketplace.eclipse.org/content/findbugs-eclipse-plugin][Find Bugs]]
-** What is it?
+** General
    Used to find common coding errors; to increase the general code base quality.
    - General → Appearance → Label Decorations
      [[file:decorators.png]]
+   - Window → Show View → Other
+     [[file:findbugs-view.png]]
+     Right Click → Find Bugs → Find Bugs
+     [[file:findbugs-cmd.png]]
 ** Resources
    - [[https://www.wikiwand.com/en/Static_program_analysis][Static Code Analysis (Wiki)]]
 *** Similar Plugins

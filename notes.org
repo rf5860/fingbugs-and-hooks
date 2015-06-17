@@ -9,7 +9,7 @@
 * [[https://marketplace.eclipse.org/content/findbugs-eclipse-plugin][Find Bugs]]
 ** What is it?
    Used to find common coding errors; to increase the general code base quality.
-   - General --> Appearance --> Label Decorations
+   - General → Appearance → Label Decorations
      [[file:decorators.png]]
 ** Resources
    - [[https://www.wikiwand.com/en/Static_program_analysis][Static Code Analysis (Wiki)]]

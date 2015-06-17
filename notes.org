@@ -7,6 +7,12 @@
      # applypatch-msg.sample  post-commit.sample   post-update.sample     pre-commit.sample  pre-rebase.sample          update.sample
      # commit-msg.sample      post-receive.sample  pre-applypatch.sample  pre-push.sample    prepare-commit-msg.sample
    #+END_SRC
+*** Examples
+**** pre-commit  - Spelling of Error Messages
+**** pre-commit  - Ignored Tests
+**** commit-msg  - Ensuring correct message format
+**** post-commit - Emailing QA upon defect completion 
+**** post-commit - Update version one
 ** Resources
    Just googling for 'Commit Hooks' brings back most of the resources you could need.
    - [[http://git-scm.com/docs/githooks][Git SCM on Git Hooks]]

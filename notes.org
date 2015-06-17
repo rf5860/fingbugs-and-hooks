@@ -22,9 +22,9 @@
      #+END_SRC
      Second, we need some utility functions to extract the message text ellipse messages. Messages start like this:
      #+BEGIN_SRC xml
-       <Ellipse:Error
-       <Ellipse:Warning
-       <Ellipse:Information
+       <Ellipse:Error />
+       <Ellipse:Warning />
+       <Ellipse:Information />
      #+END_SRC
 **** pre-commit  - Ignored Tests
 **** commit-msg  - Ensuring correct message format

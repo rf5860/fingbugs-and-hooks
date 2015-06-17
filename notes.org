@@ -20,11 +20,18 @@
        # *
        # & ttest 15 10: test, tset, testy, attest, doest, toast, retest, truest, treat, totes, teat, tests, rest, tester, yest
      #+END_SRC
-     Second, we need some utility functions to extract the message text ellipse messages. Messages start like this:
+     Second, we need some utility functions to extract the message text from newly modelled errors. Messages start like this:
      #+BEGIN_SRC xml
        <Ellipse:Error />
        <Ellipse:Warning />
        <Ellipse:Information />
+       <!-- Example message -->
+       <Ellipse:Error xmi:id="_ZtfQIX0vEeG48be0ECXZcg" message="The Todo List assignment operation failed." id="M8MWP.E0001" base_Class="_GLJD0M7FEeCFcPb5qLnBbQ"/>
+     #+END_SRC
+     So we want to write script to extract all relevant messages
+     #+BEGIN_SRC sh
+       sed -ne 's/^.*Ellipse:\(Error\|Info\|Warning\).*message="\([^"]*\)".*$/\2/p' el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx |grep "Todo List as"
+       # Output: The Todo List assignment operation failed.
      #+END_SRC
 **** pre-commit  - Ignored Tests
 **** commit-msg  - Ensuring correct message format

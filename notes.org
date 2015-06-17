@@ -1,7 +1,12 @@
-#+OPTIONS: toc:2 
-
 * Git Hooks
-** What are they?
+** General
+   Provide nice ways to automate common behavior, and provide checks for different things, such as spelling errors or commit message format
+   Samples are provided under under .git/hooks
+   #+BEGIN_SRC sh
+     ls .git/hooks
+     # applypatch-msg.sample  post-commit.sample   post-update.sample     pre-commit.sample  pre-rebase.sample          update.sample
+     # commit-msg.sample      post-receive.sample  pre-applypatch.sample  pre-push.sample    prepare-commit-msg.sample
+   #+END_SRC
 ** Resources
    Just googling for 'Commit Hooks' brings back most of the resources you could need.
    - [[http://git-scm.com/docs/githooks][Git SCM on Git Hooks]]

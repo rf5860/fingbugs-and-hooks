@@ -1,3 +1,5 @@
+#+OPTIONS: toc:2 
+
 * Git Hooks
 ** What are they?
 ** Resources

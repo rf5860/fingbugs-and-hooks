@@ -81,6 +81,19 @@
      Example output:
      [[file:sample.png]]
 **** pre-commit  - Ignored Tests
+     This one is relatively simple:
+     #+BEGIN_SRC sh
+       #!/bin/sh
+
+       tests=($(git diff --name-only --cached -- '*ServiceTest*'));
+       for test in "${tests[@]}"; do
+           ignored_tests=$(git diff --cached -- ${test}|grep ^+.*@Ignore|grep -Evc '"[BD]-[0-9]{5}"')
+           if [ ${ignored_tests} -gt  0 ] ; then
+               printf "[${RED}${ignored_tests}${NC}] test without Stories or Defects\n"
+               exit 1
+           fi
+       done
+     #+END_SRC
 **** commit-msg  - Ensuring correct message format
 **** post-commit - Emailing QA upon defect completion 
 **** post-commit - Update version one

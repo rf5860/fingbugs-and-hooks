@@ -78,6 +78,8 @@
            fi
        done  
      #+END_SRC
+     Example output:
+     [[file:sample.png]]
 **** pre-commit  - Ignored Tests
 **** commit-msg  - Ensuring correct message format
 **** post-commit - Emailing QA upon defect completion 

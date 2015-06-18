@@ -59,19 +59,21 @@
        #!/bin/sh
 
        RED='\033[0;31m'
+       BLUE='\033[0;34m'
+       GREEN='\033[0;32m'
        NC='\033[0m'
        OIFS=$IFS
        IFS=$'\n'
-       vals=($(git diff el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx|sed -ne 's/^\+.*Ellip se:\(Error\|Info\|Warn\).* message="\([^"]*\)" id="\([^"]*\)".*$/\2\n\3/p'))
+       vals=($(git diff --cached -- el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx|sed -ne 's/^\+.*Ellipse:\(Error\|Info\|Warn\).* message="\([^"]*\)" id="\([^"]*\)".*$/\2\n\3/p'))
        IFS=$OIFS
 
        for i in $(seq 0 2 ${#vals[@]});
        do
            msg=${vals[${i}]}
            id=${vals[$((${i} + 1))]}
-           errors=$(echo ${msg} | grep -c ^\&)
+           errors=$(echo ${msg} | aspell -a | grep -c ^\&)
            if [ ${errors} -gt 0 ] ; then
-               echo "There are [${errors}] typos in [${RED}${id}${NC}]"
+               printf "There are [${errors}] typos in [${RED}${id}${NC}] - {${GREEN}${msg}${NC}}"
                exit 1
            fi
        done  

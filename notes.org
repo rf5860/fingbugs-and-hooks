@@ -95,8 +95,18 @@
        done
      #+END_SRC
 **** commit-msg  - Ensuring correct message format
+     #+BEGIN_SRC sh
+       #!/bin/sh
+
+       if [ $(grep -Ec '^[BD]-[0-9]{5,5}' "$1") -eq 0 ]; then
+         echo >&2 Expected format is "<Story-Id> - <Message>"
+         exit 1
+       fi
+     #+END_SRC
 **** post-commit - Emailing QA upon defect completion 
+     Something to investigate for the future: Utilising powershell + outlook
 **** post-commit - Update version one
+     Something to investigate for the future: Utilising V1 REST API.
 ** Resources
    Just googling for 'Commit Hooks' brings back most of the resources you could need.
    - [[http://git-scm.com/docs/githooks][Git SCM on Git Hooks]]

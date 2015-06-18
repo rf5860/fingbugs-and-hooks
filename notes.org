@@ -33,6 +33,49 @@
        sed -ne 's/^.*Ellipse:\(Error\|Info\|Warning\).*message="\([^"]*\)".*$/\2/p' el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx |grep "Todo List as"
        # Output: The Todo List assignment operation failed.
      #+END_SRC
+     Let's create a new dummy message for now in RSA:
+     #+BEGIN_SRC diff
+       diff --git a/el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx b/el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx
+       index 412fe38c7..e46e04f 100644
+       --- a/el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx
+       +++ b/el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx
+       @@ -701,6 +701,7 @@
+            <packagedElement xmi:type="uml:Class" xmi:id="_pwihMA4-EeWhm5-L8zMVLQ" name="M8MWP_MSEWAB_E0005_GimmeMoreLines"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_qu3KoA4-EeWhm5-L8zMVLQ" name="M8MWP_MSEWAB_E0006_NoDurationDetailsForYou"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_KBzzsA5AEeWhm5-L8zMVLQ" name="M8MWP_MSEWAB_E0003_NoNumberOfLinesForYou"/>
+       +    <packagedElement xmi:type="uml:Class" xmi:id="_63j7gBTsEeW7DMWdOojRWw" name="M8MWP_E6661_TestErr"/>
+          </uml:Package>
+          <Ellipse:Warning xmi:id="_ZtepE30vEeG48be0ECXZcg" message="This work order already has a Todo List assignment. Do you want to continue with this assignment?" id="M8MWP.W0001" base_Class="_Yk-Z4MfKEeCq3ImkQChUbQ"/>
+          <Ellipse:Warning xmi:id="_ZtfQIH0vEeG48be0ECXZcg" message="This task already has a Todo List assignment. Do you want to continue with this assignment?" id="M8MWP.W0002" base_Class="_1W_zwMfKEeCq3ImkQChUbQ"/>
+       @@ -1349,4 +1350,5 @@
+          <Ellipse:Error xmi:id="_pwjIQA4-EeWhm5-L8zMVLQ" message="Number of Lines has to be greater than zero" parameters="" id="M8MWP.MSEWAB.E0005" base_Class="_pwihMA4-EeWhm5-L8zMVLQ"/>
+          <Ellipse:Error xmi:id="_qu3xsA4-EeWhm5-L8zMVLQ" message="Can only enter details with Duration Attribute Type" id="M8MWP.MSEWAB.E0006" base_Class="_qu3KoA4-EeWhm5-L8zMVLQ"/>
+          <Ellipse:Error xmi:id="_KB0awA5AEeWhm5-L8zMVLQ" message="Number of Lines cannot be entered for Attribute Type [{0}]" parameters="" id="M8MWP.MSEWAB.E0003" base_Class="_KBzzsA5AEeWhm5-L8zMVLQ"/>
+       +  <Ellipse:Error xmi:id="_63nl4BTsEeW7DMWdOojRWw" message="The Todo List aszignment operation failed." id="M8MWP.E6661" base_Class="_63j7gBTsEeW7DMWdOojRWw"/>
+        </xmi:XMI>
+     #+END_SRC
+     Now, we create a pre-commit hook to look for typos, and output a message if it fails validation:
+     #+BEGIN_SRC sh
+       #!/bin/sh
+
+       RED='\033[0;31m'
+       NC='\033[0m'
+       OIFS=$IFS
+       IFS=$'\n'
+       vals=($(git diff el_model/UMLModel/Module-8MWP/003.Design/002.Service/001.Errors.efx|sed -ne 's/^\+.*Ellip se:\(Error\|Info\|Warn\).* message="\([^"]*\)" id="\([^"]*\)".*$/\2\n\3/p'))
+       IFS=$OIFS
+
+       for i in $(seq 0 2 ${#vals[@]});
+       do
+           msg=${vals[${i}]}
+           id=${vals[$((${i} + 1))]}
+           errors=$(echo ${msg} | grep -c ^\&)
+           if [ ${errors} -gt 0 ] ; then
+               echo "There are [${errors}] typos in [${RED}${id}${NC}]"
+               exit 1
+           fi
+       done  
+     #+END_SRC
 **** pre-commit  - Ignored Tests
 **** commit-msg  - Ensuring correct message format
 **** post-commit - Emailing QA upon defect completion 

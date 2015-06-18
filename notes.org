@@ -89,7 +89,7 @@
        for test in "${tests[@]}"; do
            ignored_tests=$(git diff --cached -- ${test}|grep ^+.*@Ignore|grep -Evc '"[BD]-[0-9]{5}"')
            if [ ${ignored_tests} -gt  0 ] ; then
-               printf "[${RED}${ignored_tests}${NC}] test without Stories or Defects\n"
+               printf "[${RED}${ignored_tests}${NC}] ignored test without Stories or Defects\n"
                exit 1
            fi
        done
